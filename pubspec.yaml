@@ -1,0 +1,8 @@
+name: number_display
+description: A new Flutter package project.
+version: 0.0.1
+author: LIN Chen <entronad@gmail.com>
+homepage: https://github.com/entronad/number_display
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
