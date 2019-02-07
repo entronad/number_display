@@ -1,3 +1,11 @@
-## [0.0.1] - TODO: Add release date.
+## 1.0.0
 
-* TODO: Describe initial release.
+**2019-02-07**
+
+* Init this package.
+
+## 1.0.1
+
+**2019-02-07**
+
+* Add some documents.

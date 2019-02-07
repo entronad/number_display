@@ -1,8 +1,9 @@
 name: number_display
-description: A new Flutter package project.
-version: 0.0.1
+description: To display data in a width-limited component, this function will smartly help you to convert number to a certain chart length. To be simple, plain, flexible and accurate.
+version: 1.0.1
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/number_display
+issue_tracker: https://github.com/entronad/number_display/issues
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
