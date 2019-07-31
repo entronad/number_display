@@ -13,7 +13,7 @@ Display createDisplay({
 }) => (num value) {
   placeholder = placeholder.substring(0, min(length, placeholder.length));
 
-  if (value != null && !value.isFinite) {
+  if (value == null || !value.isFinite) {
     return placeholder;
   }
 
@@ -25,16 +25,21 @@ Display createDisplay({
     (m) => '${m[1]},',
   );
   final deciRaw = RegExp(r'(?<=\.)\d+$').stringMatch(valueStr) ?? '';
-  final deci = deciRaw.substring(0, min(decimal, deciRaw.length));
+  final deci = deciRaw
+    .substring(0, min(decimal, deciRaw.length))
+    .replaceAll(RegExp(r'0+$'), '');
 
   int currentLen = negative.length + localeInt.length + 1 + deci.length;
+  String deciShow;
   if (comma && currentLen <= length) {
-    return '${negative}${localeInt}${deci == '' ? '' : '.'}${deci}';
+    deciShow = deci.replaceAll(RegExp(r'0+$'), '');
+    return '${negative}${localeInt}${deciShow == '' ? '' : '.'}${deciShow}';
   }
 
   int space = length - negative.length - integer.length;
   if (space >= 2) {
-    return '${negative}${integer}${deci == '' ? '' : '.'}${deci.substring(0, min(space - 1, deci.length))}';
+    deciShow = deci.substring(0, min(space - 1, deci.length)).replaceAll(RegExp(r'0+$'), '');
+    return '${negative}${integer}${deciShow == '' ? '' : '.'}${deciShow}';
   }
   if (space >= 0) {
     return '${negative}${integer}';
@@ -48,7 +53,8 @@ Display createDisplay({
     final unit = units[sections.length - 2];
     space = length - negative.length - mainSection.length - 1;
     if (space >= 2) {
-      return '${negative}${mainSection}.${tailSection.substring(0, min(space - 1, tailSection.length))}${unit}';
+      final tailShow = tailSection.substring(0, min(space - 1, tailSection.length)).replaceAll(RegExp(r'0+$'), '');
+      return '${negative}${mainSection}${tailShow == '' ? '' : '.'}${tailShow}${unit}';
     }
     if (space >= 0) {
       return '${negative}${mainSection}${unit}';
