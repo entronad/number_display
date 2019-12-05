@@ -1,12 +1,12 @@
 name: number_display
 description: To display data in a width-limited component, this function will smartly help you to convert number to a certain chart length. To be simple, plain, flexible and accurate.
-version: 2.0.0
+version: 2.1.0
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/number_display
 issue_tracker: https://github.com/entronad/number_display/issues
 
 environment:
-  sdk: ">=2.4.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dev_dependencies:
   test: ^1.6.5
