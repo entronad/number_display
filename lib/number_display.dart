@@ -3,7 +3,7 @@ library number_display;
 
 import 'dart:math';
 
-const maxDoubleLength = 16;
+const maxPrecision = 12;
 
 enum RoundingType {
   round,
@@ -19,10 +19,7 @@ List<String> _rounding(String intStr, String decimalStr, int decimalLength, Roun
   if (decimalStr.length <= decimalLength) {
     return [intStr, decimalStr];
   }
-  if (intStr.length + decimalLength > maxDoubleLength) {
-    return [intStr, decimalStr.substring(0, min(decimalLength, decimalStr.length))];
-  }
-  decimalLength = max(decimalLength, 0);
+  decimalLength = max(min(decimalLength, maxPrecision - intStr.length), 0);
   final value = double.parse('$intStr.${decimalStr}e$decimalLength');
   List<String> rstStrs;
   if (type == RoundingType.ceil) {
@@ -45,25 +42,25 @@ typedef Display = String Function(num value);
 
 Display createDisplay({
   int length = 9,
-  int precision,
+  int decimal,
   String placeholder = '',
   bool separator = true,
   RoundingType roundingType = RoundingType.round,
 }) => (num value) {
-  precision ??= length;
+  decimal ??= length;
   placeholder = placeholder.substring(0, min(length, placeholder.length));
 
   if (value == null || !value.isFinite) {
     return placeholder;
   }
 
-  final valueStr = value.toString();
+  final valueStr = num.parse(value.toStringAsPrecision(maxPrecision)).toString();
   final negative = RegExp(r'^-?').stringMatch(valueStr) ?? '';
 
   var roundingRst = _rounding(
     RegExp(r'\d+').stringMatch(valueStr) ?? '',
     RegExp(r'(?<=\.)\d+$').stringMatch(valueStr) ?? '',
-    precision,
+    decimal,
     roundingType,
   );
   var integer = roundingRst[0];
@@ -98,7 +95,7 @@ Display createDisplay({
       roundingRst = _rounding(mainSection, tailSection, space - 1, roundingType);
       final main = roundingRst[0];
       final tail = roundingRst[1].replaceAll(RegExp(r'0+$'), '');
-      return '${negative}${mainSection}${tail == '' ? '' : '.'}${tail}${unit}';
+      return '${negative}${main}${tail == '' ? '' : '.'}${tail}${unit}';
     }
   }
 

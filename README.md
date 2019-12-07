@@ -15,7 +15,14 @@ To display data in a width-limited component, this function will smartly help yo
 - trim number with units ( 1.23k ) when length is limited
 - convert scientific notation ( 1.23e+4 ) to friendly form
 - when omitting decimals, you can change the rounding type, default to 'round'
-- no decimal trailing zeros
+- no decimal tailing zeros
+- no float error
+
+**Blogs**:
+
+[En](https://medium.com/front-end-weekly/displaying-numbers-in-frontend-2336323493c2) 
+
+[中文](https://zhuanlan.zhihu.com/p/85536865) 
 
 ## Usage
 
@@ -74,7 +81,7 @@ null => '--'
 
 The max length the result would be. length should no less then 5 so that any number can display ( say -123000 ) after trim.
 
-**precision**
+**decimal**
 
 ( default: equals to 'length' )
 

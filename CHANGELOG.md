@@ -30,9 +30,13 @@
 **2019-12-05**
 
 - Add feature: roundingType. Now you can set the way to round the decimal in 'round', 'floor' or 'ceil', witch default to 'round'.
-
 - When the length is too small, number-display will return the origin value as a string, instead of throwing an error.
-
 - Change param decimal name to 'precision', and default to equal to param length, witch means no additional limit.
-
 - Change param comma name to 'separator'.
+
+## 2.1.2
+
+**2019-12-07**
+
+- Change back param precision name to 'decimal', to avoid confusion with the common 'toPrecision' meaning.
+- Add inner precision limit to avoid float error.
