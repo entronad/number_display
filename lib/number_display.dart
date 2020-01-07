@@ -70,13 +70,13 @@ Display createDisplay({
     (m) => '${m[1]},',
   );
 
-  int currentLen = negative.length + localeInt.length + 1 + deci.length;
+  final currentLen = negative.length + localeInt.length + 1 + deci.length;
   if (separator && currentLen <= length) {
     deci = deci.replaceAll(RegExp(r'0+$'), '');
     return '${negative}${localeInt}${deci == '' ? '' : '.'}${deci}';
   }
 
-  int space = length - negative.length - integer.length;
+  var space = length - negative.length - integer.length;
   if (space >= 0) {
     roundingRst = _rounding(integer, deci, space - 1, roundingType);
     integer = roundingRst[0];

@@ -40,3 +40,10 @@
 
 - Change back param precision name to 'decimal', to avoid confusion with the common 'toPrecision' meaning.
 - Add inner precision limit to avoid float error.
+
+## 2.1.3
+
+**2020-01-07**
+
+- Update license to 2020.
+- Omit type annotations for local variables in line 73, 79.
