@@ -47,3 +47,9 @@
 
 - Update license to 2020.
 - Omit type annotations for local variables in line 73, 79.
+
+## 2.1.4
+
+**2020-01-08**
+
+- Update readme.
