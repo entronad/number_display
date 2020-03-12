@@ -1,6 +1,7 @@
 [中文](https://github.com/entronad/number_display/blob/master/README_CN.md) 
 
 # number_display
+
 *Display number smartly within a certain length.*
 
 ```
@@ -9,7 +10,7 @@ final display = createDisplay(length: 8);
 display(-254623933.876)    // result: -254.62M
 ```
 
-To display data in a width-limited component, this function will smartly help you to convert number to a certain chart length. To be **simple**, **plain**, **flexible** and **accurate**, the conversion follow this rules:
+The conversion follow this rules:
 
 - result char length will never overflow length
 - replace null, nan or infinity to placeholder
@@ -19,6 +20,19 @@ To display data in a width-limited component, this function will smartly help yo
 - when omitting decimals, you can change the rounding type, default to 'round'
 - no decimal tailing zeros
 - no float error
+
+It also has a [JavaScript version](https://github.com/entronad/number-display)
+
+## Install
+
+Add this to your package's pubspec.yaml file:
+
+```yaml
+dependencies:
+  number_display: # latest version
+```
+
+Details see [pub.dev](https://pub.dev/packages/number_display#-installing-tab-)
 
 ## Usage
 
