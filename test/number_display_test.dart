@@ -2,8 +2,6 @@ import 'package:test/test.dart';
 
 import 'package:number_display/number_display.dart';
 
-import 'dart:math';
-
 main() {
   group('test', () {
     test('default display', () {
@@ -49,7 +47,7 @@ main() {
 
     test('placeholder allowText separator', () {
       final display = createDisplay(
-        separator: false,
+        separator: null,
         placeholder: '--',
       );
 
@@ -61,7 +59,7 @@ main() {
 
     test('placeholder separator', () {
       final display = createDisplay(
-        separator: false,
+        separator: null,
         placeholder: '--',
       );
 
@@ -111,13 +109,54 @@ main() {
       final display = createDisplay(
         length: 30,
         decimal: 30,
-        separator: false,
+        separator: null,
       );
 
       expect(display(0.1 + 0.2), '0.3');
       expect(display(0.9999999999999), '1');
       expect(display(12345678.12345678), '12345678.1235');
       expect(display(44444444444444), '44444444444400');
+    });
+
+    test('seporator', () {
+      final display = createDisplay(
+        length: 30,
+        decimal: 30,
+        separator: '_',
+      );
+
+      expect(display(12345678), '12_345_678');
+
+      final display2 = createDisplay(
+        length: 30,
+        decimal: 30,
+        separator: '__',
+      );
+
+      expect(display2(12345678), '12_345_678');
+    });
+
+    test('units', () {
+      final display = createDisplay(
+        length: 8,
+        units: null,
+      );
+
+      expect(display(-254623933.876), '-254.62M');
+
+      final display1 = createDisplay(
+        length: 8,
+        units: [],
+      );
+
+      expect(display1(-254623933.876), '-254.62M');
+
+      final display2 = createDisplay(
+        length: 8,
+        units: ['S', 'S'],
+      );
+
+      expect(display2(-254623933.876), '-254.62S');
     });
   });
 }

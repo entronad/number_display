@@ -1,29 +1,22 @@
-## 1.0.0
+## 2.2.0
 
-**2019-02-07**
+**2020-03-12**
 
-* Init this package.
+- Make seporator and units configurable.
 
-## 1.0.1
+## 2.1.3
 
-**2019-02-07**
+**2020-01-07**
 
-* Add some documents.
+- Update license to 2020.
+- Omit type annotations for local variables in line 73, 79.
 
-## 2.0.0
+## 2.1.2
 
-**2019-07-30**
+**2019-12-07**
 
-- Simplify APIs, details in README.md.
-- Optimize performance.
-- Add unit test.
-- Remove decimal trailing zeros.
-
-## 2.0.1
-
-**2019-07-31**
-
-- Enlarge SDK requirement to ">=2.1.0 <3.0.0".
+- Change back param precision name to 'decimal', to avoid confusion with the common 'toPrecision' meaning.
+- Add inner precision limit to avoid float error.
 
 ## 2.1.0
 
@@ -34,16 +27,29 @@
 - Change param decimal name to 'precision', and default to equal to param length, witch means no additional limit.
 - Change param comma name to 'separator'.
 
-## 2.1.2
+## 2.0.1
 
-**2019-12-07**
+**2019-07-31**
 
-- Change back param precision name to 'decimal', to avoid confusion with the common 'toPrecision' meaning.
-- Add inner precision limit to avoid float error.
+- Enlarge SDK requirement to ">=2.1.0 <3.0.0".
 
-## 2.1.3
+## 2.0.0
 
-**2020-01-07**
+**2019-07-30**
 
-- Update license to 2020.
-- Omit type annotations for local variables in line 73, 79.
+- Simplify APIs, details in README.md.
+- Optimize performance.
+- Add unit test.
+- Remove decimal trailing zeros.
+
+## 1.0.1
+
+**2019-02-07**
+
+* Add some documents.
+
+## 1.0.0
+
+**2019-02-07**
+
+* Init this package.

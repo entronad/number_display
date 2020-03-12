@@ -1,3 +1,5 @@
+[中文](https://github.com/entronad/number_display/blob/master/README_CN.md) 
+
 # number_display
 *Display number smartly within a certain length.*
 
@@ -17,12 +19,6 @@ To display data in a width-limited component, this function will smartly help yo
 - when omitting decimals, you can change the rounding type, default to 'round'
 - no decimal tailing zeros
 - no float error
-
-**Blogs**:
-
-[En](https://medium.com/front-end-weekly/displaying-numbers-in-frontend-2336323493c2) 
-
-[中文](https://zhuanlan.zhihu.com/p/85536865) 
 
 ## Usage
 
@@ -95,12 +91,24 @@ The result when the input is neither string nor number, or the input is NaN, Inf
 
 **separator**
 
-( default: true )
+( default: ',' )
 
-Whether the locale string has commas ( 1,234,222 ), if there are rooms.
+Set the locale string separators ( 1,234,222 ), if there are rooms. Set it to null if you don't need any. Only the first char is kept.
 
 **roundingType**
 
 ( default: RoundingType.round )
 
 The rounding type when omitting decimals, enum in RoundingType.round, RoundingType.floor or RoundingType.ceil.
+
+**units**
+
+( default: ['k', 'M', 'G', 'T', 'P'] )
+
+The digit units to use. Only the first char is kept for each unit. If the property is set to null or too short, it will fallback to the default.
+
+## Blogs
+
+[En](https://medium.com/front-end-weekly/displaying-numbers-in-frontend-2336323493c2) 
+
+[中文](https://zhuanlan.zhihu.com/p/85536865) 

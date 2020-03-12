@@ -44,8 +44,9 @@ Display createDisplay({
   int length = 9,
   int decimal,
   String placeholder = '',
-  bool separator = true,
+  String separator = ',',
   RoundingType roundingType = RoundingType.round,
+  List<String> units = const ['k', 'M', 'G', 'T', 'P'],
 }) => (num value) {
   decimal ??= length;
   placeholder = placeholder.substring(0, min(length, placeholder.length));
@@ -71,9 +72,9 @@ Display createDisplay({
   );
 
   final currentLen = negative.length + localeInt.length + 1 + deci.length;
-  if (separator && currentLen <= length) {
+  if (separator != null && currentLen <= length) {
     deci = deci.replaceAll(RegExp(r'0+$'), '');
-    return '${negative}${localeInt}${deci == '' ? '' : '.'}${deci}';
+    return '${negative}${localeInt.replaceAll(',', separator.substring(0, 1))}${deci == '' ? '' : '.'}${deci}';
   }
 
   var space = length - negative.length - integer.length;
@@ -88,8 +89,12 @@ Display createDisplay({
   if (sections.length > 1) {
     final mainSection = sections[0];
     final tailSection = sections.sublist(1).join();
-    const units = ['k', 'M', 'G', 'T', 'P'];
-    final unit = units[sections.length - 2];
+    const baseUnits = ['k', 'M', 'G', 'T', 'P'];
+    units = units ?? baseUnits;
+    final unitIndex = sections.length - 2; 
+    final unit = unitIndex < units.length
+      ? units[sections.length - 2]?.substring(0, 1)
+      : baseUnits[sections.length - 2];
     space = length - negative.length - mainSection.length - 1;
     if (space >= 0) {
       roundingRst = _rounding(mainSection, tailSection, space - 1, roundingType);
