@@ -1,3 +1,9 @@
+## 2.3.0
+
+**2020-06-02**
+
+- Make decimal point configurable.
+
 ## 2.2.1
 
 **2020-03-12**

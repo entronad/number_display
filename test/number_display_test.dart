@@ -158,5 +158,15 @@ main() {
 
       expect(display2(-254623933.876), '-254.62S');
     });
+
+    test('locale', () {
+      final display = createDisplay(
+        length: 12,
+        separator: '.',
+        decimalPoint: ',',
+      );
+
+      expect(display(4623933.8), '4.623.933,8');
+    });
   });
 }

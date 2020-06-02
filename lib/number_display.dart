@@ -45,6 +45,7 @@ Display createDisplay({
   int decimal,
   String placeholder = '',
   String separator = ',',
+  String decimalPoint = '.',
   RoundingType roundingType = RoundingType.round,
   List<String> units = const ['k', 'M', 'G', 'T', 'P'],
 }) => (num value) {
@@ -71,10 +72,13 @@ Display createDisplay({
     (m) => '${m[1]},',
   );
 
+  separator = separator?.substring(0, 1);
+  decimalPoint = decimalPoint?.substring(0, 1);
+
   final currentLen = negative.length + localeInt.length + 1 + deci.length;
   if (separator != null && currentLen <= length) {
     deci = deci.replaceAll(RegExp(r'0+$'), '');
-    return '${negative}${localeInt.replaceAll(',', separator.substring(0, 1))}${deci == '' ? '' : '.'}${deci}';
+    return '${negative}${localeInt.replaceAll(',', separator)}${deci == '' ? '' : decimalPoint}${deci}';
   }
 
   var space = length - negative.length - integer.length;
@@ -82,7 +86,7 @@ Display createDisplay({
     roundingRst = _rounding(integer, deci, space - 1, roundingType);
     integer = roundingRst[0];
     deci = roundingRst[1].replaceAll(RegExp(r'0+$'), '');
-    return '${negative}${integer}${deci == '' ? '' : '.'}${deci}';
+    return '${negative}${integer}${deci == '' ? '' : decimalPoint}${deci}';
   }
 
   final sections = localeInt.split(',');
@@ -100,7 +104,7 @@ Display createDisplay({
       roundingRst = _rounding(mainSection, tailSection, space - 1, roundingType);
       final main = roundingRst[0];
       final tail = roundingRst[1].replaceAll(RegExp(r'0+$'), '');
-      return '${negative}${main}${tail == '' ? '' : '.'}${tail}${unit}';
+      return '${negative}${main}${tail == '' ? '' : decimalPoint}${tail}${unit}';
     }
   }
 

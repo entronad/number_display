@@ -1,5 +1,3 @@
-[中文](https://github.com/entronad/number_display/blob/master/README_CN.md) 
-
 # number_display
 
 *Display number smartly within a certain length.*
@@ -83,6 +81,10 @@ null => '--'
 123456 => '123456'
 ```
 
+## Locale
+
+By setting the `seperator` and `decimalPoint` , numbers can be any locale form: '4.623.933,8'.
+
 ## Configurations
 
 **length**
@@ -93,7 +95,7 @@ The max length the result would be. length should no less then 5 so that any num
 
 **decimal**
 
-( default: equals to 'length' )
+( default: equals to `length` )
 
 The max decimal length. Note that this is only a constraint. The final precision will be calculated by length, and less than this param. This param is the same as 'length' by default, witch means no additional limit. There will be no decimal trailing zeros.
 
@@ -109,6 +111,12 @@ The result when the input is neither string nor number, or the input is NaN, Inf
 
 Set the locale string separators ( 1,234,222 ), if there are rooms. Set it to null if you don't need any. Only the first char is kept.
 
+**decimalPoint**
+
+( default: '.' )
+
+Set the locale string decimal point. Only the first char is kept.
+
 **roundingType**
 
 ( default: RoundingType.round )
@@ -122,7 +130,4 @@ The rounding type when omitting decimals, enum in RoundingType.round, RoundingTy
 The digit units to use. Only the first char is kept for each unit. If the property is set to null or too short, it will fallback to the default.
 
 ## Blogs
-
-[En](https://medium.com/front-end-weekly/displaying-numbers-in-frontend-2336323493c2) 
-
-[中文](https://zhuanlan.zhihu.com/p/85536865) 
+[Displaying Numbers in Frontend](https://medium.com/front-end-weekly/displaying-numbers-in-frontend-2336323493c2) 
