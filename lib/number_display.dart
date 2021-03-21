@@ -11,7 +11,7 @@ enum RoundingType {
   ceil,
 }
 
-List<String> _rounding(String intStr, String decimalStr, int decimalLength, RoundingType type) {
+List<String> _rounding(String? intStr, String? decimalStr, int decimalLength, RoundingType type) {
   intStr = intStr ?? '';
   if ((decimalStr == null) || (decimalStr == '0')) {
     decimalStr = '';
@@ -38,17 +38,17 @@ List<String> _rounding(String intStr, String decimalStr, int decimalLength, Roun
   return [rstStrs[0], ''];
 }
 
-typedef Display = String Function(num value);
+typedef Display = String Function(num? value);
 
 Display createDisplay({
   int length = 9,
-  int decimal,
+  int? decimal,
   String placeholder = '',
-  String separator = ',',
-  String decimalPoint = '.',
+  String? separator = ',',
+  String? decimalPoint = '.',
   RoundingType roundingType = RoundingType.round,
   List<String> units = const ['k', 'M', 'G', 'T', 'P'],
-}) => (num value) {
+}) => (num? value) {
   decimal ??= length;
   placeholder = placeholder.substring(0, min(length, placeholder.length));
 
@@ -62,7 +62,7 @@ Display createDisplay({
   var roundingRst = _rounding(
     RegExp(r'\d+').stringMatch(valueStr) ?? '',
     RegExp(r'(?<=\.)\d+$').stringMatch(valueStr) ?? '',
-    decimal,
+    decimal!,
     roundingType,
   );
   var integer = roundingRst[0];
@@ -78,7 +78,7 @@ Display createDisplay({
   final currentLen = negative.length + localeInt.length + 1 + deci.length;
   if (separator != null && currentLen <= length) {
     deci = deci.replaceAll(RegExp(r'0+$'), '');
-    return '${negative}${localeInt.replaceAll(',', separator)}${deci == '' ? '' : decimalPoint}${deci}';
+    return '${negative}${localeInt.replaceAll(',', separator!)}${deci == '' ? '' : decimalPoint}${deci}';
   }
 
   var space = length - negative.length - integer.length;
@@ -94,10 +94,9 @@ Display createDisplay({
     final mainSection = sections[0];
     final tailSection = sections.sublist(1).join();
     const baseUnits = ['k', 'M', 'G', 'T', 'P'];
-    units = units ?? baseUnits;
     final unitIndex = sections.length - 2; 
     final unit = unitIndex < units.length
-      ? units[sections.length - 2]?.substring(0, 1)
+      ? units[sections.length - 2].substring(0, 1)
       : baseUnits[sections.length - 2];
     space = length - negative.length - mainSection.length - 1;
     if (space >= 0) {

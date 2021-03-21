@@ -137,13 +137,6 @@ main() {
     });
 
     test('units', () {
-      final display = createDisplay(
-        length: 8,
-        units: null,
-      );
-
-      expect(display(-254623933.876), '-254.62M');
-
       final display1 = createDisplay(
         length: 8,
         units: [],
